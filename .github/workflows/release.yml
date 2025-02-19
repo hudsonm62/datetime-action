@@ -47,5 +47,5 @@ jobs:
         run: |
           MAJOR_INPUT_VERSION="${INPUT_VERSION%%.*}"
           MAJOR_VERSION_TAG="v${MAJOR_INPUT_VERSION}"
-          git tag -fa "${MAJOR_VERSION_TAG}"
+          git tag -fa "${MAJOR_VERSION_TAG}" -m "Bump ${MAJOR_VERSION_TAG}"
           git push origin "${MAJOR_VERSION_TAG}" --force
