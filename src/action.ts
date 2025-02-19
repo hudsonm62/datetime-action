@@ -57,8 +57,8 @@ export default async function run() {
     setOutput("iso8601", outDateTime);
     setOutput("formatted", formattedDateTime);
     // Log it for visibility
-    console.log(`ISO8601: ${outDateTime}`)
-    console.log(`formatted: ${formattedDateTime}`)
+    console.log(`ISO8601: ${outDateTime}`);
+    console.log(`formatted: ${formattedDateTime}`);
   } catch (error: unknown) {
     throw error instanceof Error ? error : new Error(String(error));
   }
