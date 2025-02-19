@@ -1,4 +1,4 @@
-name: DateTime Action
+name: Date Time Action
 description: Simple Action using Luxon to pull the time in a workflow.
 author: hudsonm62
 
