@@ -1,8 +1,8 @@
 # DateTime Action
 
-Simple Luxon-based DateTime Action written in TypeScript.
+Simple Action using Luxon to pull the time in a workflow.
 
----
+[![GitHub Tag](https://img.shields.io/github/v/tag/hudsonm62/datetime-action?label=latest)](https://github.com/hudsonm62/datetime-action/releases) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hudsonm62/datetime-action/ci.yml?label=%F0%9F%A7%AA%20%20CI)](https://github.com/hudsonm62/datetime-action/actions/workflows/ci.yml) ![GitHub top language](https://img.shields.io/github/languages/top/hudsonm62/datetime-action?link=%20)
 
 ## Basic Usage
 
@@ -84,6 +84,8 @@ Simple Luxon-based DateTime Action written in TypeScript.
 # Jan 1, 2025, 2:00 AM
 ```
 
+- [See it in Action!](https://github.com/hudsonm62/datetime-action/actions/workflows/ci.yml) 🥁
+
 ## Inputs / Outputs
 
 ### Inputs
@@ -110,8 +112,6 @@ npm ci
 npm test
 npm run package
 ```
-
----
 
 You can also use `dist/index.js` as a dirty little CLI tool - pass in inputs as arguments:
 
