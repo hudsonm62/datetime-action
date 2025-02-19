@@ -14,7 +14,7 @@ Simple Action using Luxon to pull the time in a workflow.
 - uses: hudsonm62/datetime-action@v1
   id: datetime
 
-- run: echo {{ $steps.datetime.outputs.out }}
+- run: echo {{ $steps.datetime.outputs.iso8601 }}
 # 2025-02-18T05:45:17.055+00:00
 ```
 
@@ -117,5 +117,5 @@ You can also use `dist/index.js` as a dirty little CLI tool - pass in inputs as 
 
 ```bash
 node . --timezone Asia/Tokyo --locale ja-jp --format ff --date "2025-01-01T00:00Z"
-# 2025年1月01日 00:00
+# 2025年1月01日 09:00
 ```
