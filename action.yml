@@ -1,0 +1,29 @@
+name: DateTime Action
+description: Simple Action using Luxon to pull the time in a workflow.
+author: hudsonm62
+
+branding:
+  icon: clock
+  color: blue
+
+inputs:
+  format:
+    description: Custom format for output (e.g., 'MMMM dd, yyyy'). Defaults to ISO 8601 if not provided.
+  date:
+    description: Specific date to use instead of the Action runtime.
+  timezone:
+    description: IANA Tz Identifier - Defaults to 'Etc/Utc'.
+    default: Etc/Utc
+  locale:
+    description: Locale for formatting - <https://moment.github.io/luxon/#/intl?id=default-locale>
+    default: en-US
+
+outputs:
+  iso8601:
+    description: Time in ISO 8601 format.
+  formatted:
+    description: Time formatted using the specified format (defaults to ISO if no format is provided).
+
+runs:
+  using: node20
+  main: dist/index.js

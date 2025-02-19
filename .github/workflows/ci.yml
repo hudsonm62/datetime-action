@@ -1,0 +1,168 @@
+name: 🧪 CI
+
+on:
+  push:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  NODE_VERSION: 22.x
+
+jobs:
+  lint-prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚙️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup/Cache Node
+        id: npm-cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: 📦 Install NPM Packages
+        run: npm ci
+
+      - name: ✨ Check Formatting
+        run: npm run lint:prettier
+
+  jest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚙️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup/Cache Node
+        id: npm-cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: 📦 Install NPM Packages
+        run: npm ci
+
+      - name: 🏗️ Run Jest
+        run: npm test
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚙️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup/Cache Node
+        id: npm-cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: 📦 Install NPM Packages
+        run: npm ci
+
+      - name: 🔀 Copy Current for Comparison
+        run: cp "dist/index.js" "tests/index.js" && cp "dist/licenses.txt" "tests/licenses.txt"
+
+      - name: 🏗️ Package to dist/index.js
+        run: npm run package
+
+      - name: ⬆ Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: dist
+          compression-level: 9
+
+      - name: 🔃 Confirm index.js has been updated
+        uses: hudsonm62/compare-action@v1
+        with:
+          path1: dist/index.js # current from build
+          path2: tests/index.js # live in repo
+          error_same: false
+          ignore_line_ending: true
+
+      - name: 🔃 Confirm licenses.txt has been updated
+        uses: hudsonm62/compare-action@v1
+        with:
+          path1: dist/licenses.txt # current from build
+          path2: tests/licenses.txt # live in repo
+          error_same: false
+          ignore_line_ending: true
+
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚙️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Get Current UTC Time
+        uses: ./
+
+      - name: Format an ISO8601 Date
+        uses: ./
+        with:
+          date: "2025-01-01T00:00Z"
+          format: yyyy-MM-dd
+
+      - name: Get from Timezone & Format
+        uses: ./
+        id: datetime
+        with:
+          timezone: Australia/Sydney
+          format: yyyy-MM-dd
+
+      - name: Locale & Luxon Macro
+        uses: ./
+        with:
+          locale: ja-JP
+          format: ff
+
+      - name: Convert to UTC
+        uses: ./
+        with:
+          date: "2025-01-01T00:00:00+09:00"
+          format: ff
+
+      - name: Convert to a different timezone
+        uses: ./
+        with:
+          date: "2025-01-01T00:00:00+09:00"
+          timezone: Australia/Sydney
+          format: ff
+
+      - name: Chinese Locale
+        uses: ./
+        with:
+          locale: zh-cn
+          date: "2025-01-01T00:00:00+09:00"
+          timezone: Australia/Sydney
+          format: ff
+
+      - name: French Locale
+        uses: ./
+        with:
+          locale: fr
+          date: "2025-01-01T00:00:00+09:00"
+          timezone: Australia/Sydney
+          format: ff
+
+      - name: Korean Locale
+        uses: ./
+        with:
+          locale: ko-KR
+          date: "2025-01-01T00:00:00+09:00"
+          timezone: Australia/Sydney
+          format: ff
+
+      - name: Arabic Locale
+        uses: ./
+        with:
+          locale: ar-ae
+          date: "2025-01-01T00:00:00+09:00"
+          timezone: Australia/Sydney
+          format: ff

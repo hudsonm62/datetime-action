@@ -1,0 +1,32 @@
+{
+  "name": "datetime-action",
+  "module": "src/index.ts",
+  "type": "module",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "luxon": "^3.5.0",
+    "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.14",
+    "@types/luxon": "^3.4.2",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^22.13.4",
+    "@vercel/ncc": "^0.38.3",
+    "eslint": "^9.20.1",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.1",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "package": "rimraf dist && ncc build src/index.ts -C --minify --license licenses.txt --no-source-map-register -o dist",
+    "lint:prettier": "prettier . -c",
+    "lint": "npm run lint:prettier"
+  }
+}
