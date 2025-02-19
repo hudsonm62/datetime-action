@@ -28,20 +28,20 @@ Simple Action using Luxon to pull the time in a workflow.
     format: yyyy-MM-dd
 
 - run: echo {{ $steps.datetime.outputs.formatted }}
-# Jan 1, 2025, 12:00 AM
+# 2025-01-01
 ```
 
-### Get Time in Timezone & Format
+### Current Time in Timezone & Format
 
 ```yaml
 - uses: hudsonm62/datetime-action@v1
   id: datetime
   with:
     timezone: Australia/Sydney
-    format: yyyy-MM-dd
+    format: fff
 
 - run: echo {{ $steps.datetime.outputs.formatted }}
-# 2025-12-31
+# January 1, 2025 at 11:00 AM GMT+11
 ```
 
 ### Locale & Luxon Macro
@@ -78,10 +78,10 @@ Simple Action using Luxon to pull the time in a workflow.
   with:
     date: "2025-01-01T00:00:00+09:00"
     timezone: Australia/Sydney
-    format: ff
+    format: fff
 
 - run: echo {{ $steps.datetime.outputs.formatted }}
-# Jan 1, 2025, 2:00 AM
+# January 1, 2025 at 2:00 AM GMT+11
 ```
 
 - [See it in Action!](https://github.com/hudsonm62/datetime-action/actions/workflows/ci.yml) 🥁
@@ -116,6 +116,6 @@ npm run package
 You can also use `dist/index.js` as a dirty little CLI tool - pass in inputs as arguments:
 
 ```bash
-node . --timezone Asia/Tokyo --locale ja-jp --format ff --date "2025-01-01T00:00Z"
-# 2025年1月01日 09:00
+node . --timezone Asia/Tokyo --locale ja-jp --format fff --date "2025-01-01T00:00Z"
+# 2025年1月1日 9:00 JST
 ```
