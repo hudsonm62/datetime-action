@@ -16,7 +16,7 @@
     "@types/node": "^22.13.4",
     "@vercel/ncc": "^0.38.3",
     "eslint": "^9.20.1",
-    "globals": "^15.15.0",
+    "globals": "^16.0.0",
     "prettier": "^3.5.1",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
