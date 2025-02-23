@@ -88,7 +88,7 @@ describe("run", () => {
     getInputMock.mockImplementation((name: string) => {
       const inputs: Record<string, string> = {
         date: "2025-02-23T02:49:14.967+11:00",
-        timezone: "America/New_York"
+        timezone: "America/New_York",
       };
       return inputs[name] || "";
     });
