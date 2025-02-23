@@ -85,19 +85,18 @@ describe("run", () => {
 
   test("should handle timezone input", async () => {
     process.env.GITHUB_ACTIONS = "true";
-
-    //  we only care about the timezone input
     getInputMock.mockImplementation((name: string) => {
-      if (name === "timezone") return "America/New_York";
-      return "";
+      const inputs: Record<string, string> = {
+        date: "2025-02-23T02:49:14.967+11:00",
+        timezone: "America/New_York"
+      };
+      return inputs[name] || "";
     });
-
-    getInputMock.mockImplementationOnce(() => "2025-02-19T10:00:00");
 
     await run();
     expect(core.setOutput).toHaveBeenCalledWith(
       "iso8601",
-      expect.stringContaining("2025-02-19"),
+      expect.stringContaining("2025-02-22T10:49:14.967-05:00"),
     );
   });
 
